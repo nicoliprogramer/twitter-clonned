@@ -14,8 +14,10 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // Routes
 import loginRoute from "./routes/loginRoutes.js"
+import registerRoutes from "./routes/registerRoutes.js"
 
-app.use("/login", loginRoute)   
+app.use("/login", loginRoute)
+app.use("/register", registerRoutes)
 
 app.get("/", requireLogin, (req, res, next) => {
     let payload = {
