@@ -23,10 +23,12 @@ app.use(session({
 }))
 // Routes
 import loginRoute from "./routes/loginRoutes.js"
-import registerRoutes from "./routes/registerRoutes.js"
+import registerRoute from "./routes/registerRoutes.js"
+import logoutRoute from "./routes/logout.js"
 
 app.use("/login", loginRoute)
-app.use("/register", registerRoutes)
+app.use("/register", registerRoute)
+app.use("/logout", logoutRoute)
 
 app.get("/", requireLogin, (req, res, next) => {
     let payload = {
