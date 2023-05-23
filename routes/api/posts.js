@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import User from "../../schemas/userModel.js";
+import Post from "../../schemas/postModel.js";
 const app = express();
 const router = express.Router();
 
@@ -14,7 +15,20 @@ router.post("/", async (req, res, next) => {
     return res.sendStatus(400);
   }
 
-  res.status(200).send("it worked");
+  let postData = {
+    content: req.body.content,
+    postedBy: req.session.user,
+  };
+
+  Post.create(postData)
+    .then(async (newPost) => {
+      newPost = await User.populate(newPost, { path: "postedBy" });
+      res.status(201).send(newPost);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(400);
+    });
 });
 
 export default router;
