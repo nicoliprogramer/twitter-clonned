@@ -58,7 +58,7 @@ createPostHtml = (postData) => {
               </div>
               <div class='postButtonContainer'>
                   <button>
-                    <i class='fas fa-retweet'></i>
+                    <i class='fa fa-retweet'></i>
                   </button>
               </div>
               <div class='postButtonContainer'>
