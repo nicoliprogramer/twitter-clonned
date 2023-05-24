@@ -40,4 +40,8 @@ router.post("/", async (req, res, next) => {
     });
 });
 
+router.put("/", async (req, res, next) => {
+  res.status(200).send("BIEN");
+});
+
 export default router;
