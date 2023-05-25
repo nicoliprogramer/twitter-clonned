@@ -40,7 +40,15 @@ router.post("/", async (req, res, next) => {
     });
 });
 
-router.put("/", async (req, res, next) => {
+router.put("/:id/like", async (req, res, next) => {
+  let postId = req.params.id;
+  let userId = req.session.user._id;
+
+  let isLiked =
+    req.session.user.likes && req.session.user.likes.includes(postId);
+
+  console.log("is Liked: " + isLiked);
+
   res.status(200).send("BIEN");
 });
 
