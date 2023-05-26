@@ -64,7 +64,18 @@ router.put("/:id/like", async (req, res, next) => {
 
   // insert post like
 
-  res.status(200).send("BIEN");
+  let post = await Post.findByIdAndUpdate(
+    postId,
+    {
+      [option]: { likes: userId },
+    },
+    { new: true }
+  ).catch((error) => {
+    console.log(error);
+    res.sendStatus(400);
+  });
+
+  res.status(200).send(post);
 });
 
 export default router;
