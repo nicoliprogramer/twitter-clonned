@@ -71,6 +71,10 @@ createPostHtml = (postData) => {
   let displayName = postedBy.firstName + " " + postedBy.lastName;
   let timestamp = timeDifference(new Date(), new Date(postData.createdAt));
 
+  let likeButtonActiveClass = postData.likes.includes(userLoggedIn._id)
+    ? "active"
+    : "";
+
   return `<div class='post' data-id='${postData._id}'>
   
     <div class='mainContentContainer'>
@@ -100,7 +104,7 @@ createPostHtml = (postData) => {
                   </button>
               </div>
               <div class='postButtonContainer red'>
-                  <button class='likeButton'>
+                  <button class='likeButton ${likeButtonActiveClass}'>
                     <i class='far fa-heart'></i>
                     <span>${postData.likes.length || ""}</span>
                   </button>
