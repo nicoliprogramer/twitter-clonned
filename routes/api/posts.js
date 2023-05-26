@@ -78,4 +78,44 @@ router.put("/:id/like", async (req, res, next) => {
   res.status(200).send(post);
 });
 
+router.post("/:id/retweet", async (req, res, next) => {
+  res.status(200).send("Pressed retweet");
+
+  // let postId = req.params.id;
+  // let userId = req.session.user._id;
+
+  // let isLiked =
+  //   req.session.user.likes && req.session.user.likes.includes(postId);
+
+  // let option = isLiked ? "$pull" : "$addToSet";
+
+  // // insert user like
+
+  // req.session.user = await User.findByIdAndUpdate(
+  //   userId,
+  //   {
+  //     [option]: { likes: postId },
+  //   },
+  //   { new: true }
+  // ).catch((error) => {
+  //   console.log(error);
+  //   res.sendStatus(400);
+  // });
+
+  // // insert post like
+
+  // let post = await Post.findByIdAndUpdate(
+  //   postId,
+  //   {
+  //     [option]: { likes: userId },
+  //   },
+  //   { new: true }
+  // ).catch((error) => {
+  //   console.log(error);
+  //   res.sendStatus(400);
+  // });
+
+  // res.status(200).send(post);
+});
+
 export default router;
