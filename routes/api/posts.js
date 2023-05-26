@@ -96,7 +96,7 @@ router.post("/:id/retweet", async (req, res, next) => {
   let repost = deletedPost;
 
   if (repost == null) {
-    repost = await Post.create({ postedBy: userId, repostData: postId }).catch(
+    repost = await Post.create({ postedBy: userId, retweetData: postId }).catch(
       (error) => {
         console.log(error);
         res.sendStatus(400);
