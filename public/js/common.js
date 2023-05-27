@@ -89,8 +89,6 @@ createPostHtml = (postData) => {
   let retweetedBy = isRetweet ? postData.postedBy.username : null;
   postData = isRetweet ? postData.retweetData : postData;
 
-  console.log(isRetweet);
-
   let postedBy = postData.postedBy;
 
   if (postedBy._id == undefined) {
@@ -138,7 +136,7 @@ createPostHtml = (postData) => {
             </div>
             <div class='postFooter'>
               <div class='postButtonContainer'>
-                  <button>
+                  <button data-toggle='modal' data-target='#replyModal'>
                     <i class='far fa-comment'></i>
                   </button>
               </div>
