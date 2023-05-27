@@ -104,7 +104,7 @@ router.post("/:id/retweet", async (req, res, next) => {
     );
   }
 
-  // insert user like
+  // insert user retweet
 
   req.session.user = await User.findByIdAndUpdate(
     userId,
@@ -117,7 +117,7 @@ router.post("/:id/retweet", async (req, res, next) => {
     res.sendStatus(400);
   });
 
-  // insert post like
+  // insert post retweet
 
   let post = await Post.findByIdAndUpdate(
     postId,
