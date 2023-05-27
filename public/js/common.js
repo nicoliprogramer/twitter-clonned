@@ -95,6 +95,11 @@ createPostHtml = (postData) => {
   let likeButtonActiveClass = postData.likes.includes(userLoggedIn._id)
     ? "active"
     : "";
+  let retweetButtonActiveClass = postData.retweetUsers.includes(
+    userLoggedIn._id
+  )
+    ? "active"
+    : "";
 
   return `<div class='post' data-id='${postData._id}'>
   
@@ -120,7 +125,7 @@ createPostHtml = (postData) => {
                   </button>
               </div>
               <div class='postButtonContainer green'>
-                  <button class='retweetButton'>
+                  <button class='retweetButton ${retweetButtonActiveClass}'>
                     <i class='fa fa-retweet'></i>
                     <span>${postData.retweetUsers.length || ""}</span>
 
