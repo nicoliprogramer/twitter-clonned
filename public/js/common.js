@@ -109,8 +109,18 @@ createPostHtml = (postData) => {
     ? "active"
     : "";
 
+  let retweetText = "";
+  if (isRetweet) {
+    retweetText = `
+    <i class='fa fa-retweet'></i>
+    <span>Retweeted by <a href='/profile/${retweetedBy}'>@${retweetedBy}</a></span>
+    `;
+  }
+
   return `<div class='post' data-id='${postData._id}'>
-  
+    <div class='postActionContainer'>
+        ${retweetText}
+    </div>
     <div class='mainContentContainer'>
         <div class='userImageContainer'>
             <img src='${postedBy.profilePic}'>
