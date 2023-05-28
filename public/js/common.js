@@ -32,6 +32,15 @@ $("#submitPostButton").click(() => {
   });
 });
 
+$("#replyModal").on("show.bs.modal", (event) => {
+  let button = $(event.relatedTarget);
+  let postId = getPostIdFromElement(button);
+
+  $.get(`/api/posts/${postId}`, (results) => {
+    console.log(results);
+  });
+});
+
 $(document).on("click", ".likeButton", (event) => {
   let button = $(event.target);
   let postId = getPostIdFromElement(button);
