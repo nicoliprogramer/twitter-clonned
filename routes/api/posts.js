@@ -7,39 +7,12 @@ const router = express.Router();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-router.get("/", (req, res, next) => {
-  Post.find()
-    .populate("postedBy")
-    .populate("retweetData")
-    .sort({ createdAt: -1 })
-    .then(async (results) => {
-      results = await User.populate(results, { path: "retweetData.postedBy" });
-
-      res.status(200).send(results);
-    })
-    .catch((error) => {
-      console.log(error);
-      res.sendStatus(400);
-    });
+router.get("/", async (req, res, next) => {
+  let results = await getPosts();
+  res.status(200).send(results);
 });
 
-router.get("/:id", (req, res, next) => {
-  return res.status(200).send("This is awesome");
-
-  // Post.find()
-  //   .populate("postedBy")
-  //   .populate("retweetData")
-  //   .sort({ createdAt: -1 })
-  //   .then(async (results) => {
-  //     results = await User.populate(results, { path: "retweetData.postedBy" });
-
-  //     res.status(200).send(results);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //     res.sendStatus(400);
-  //   });
-});
+router.get("/:id", (req, res, next) => {});
 
 router.post("/", async (req, res, next) => {
   if (!req.body.content) {
@@ -156,4 +129,12 @@ router.post("/:id/retweet", async (req, res, next) => {
   res.status(200).send(post);
 });
 
+async function getPosts() {
+  let results = await Post.find()
+    .populate("postedBy")
+    .populate("retweetData")
+    .sort({ createdAt: -1 })
+    .catch((error) => console.log(error));
+  return await User.populate(results, { path: "retweetData.postedBy" });
+}
 export default router;
