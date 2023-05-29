@@ -16,13 +16,21 @@ $("#postTextarea, #replyTextarea").keyup((event) => {
   submitButton.prop("disabled", false);
 });
 
-$("#submitPostButton").click(() => {
+$("#submitPostButton, #submitReplyButton").click(() => {
   let button = $(event.target);
-  let textbox = $("#postTextarea");
+
+  let isModal = button.parents(".modal").length == 1;
+  let textbox = isModal ? $("#replyTextarea") : $("#postTextarea");
 
   let data = {
     content: textbox.val(),
   };
+
+  if (isModal) {
+    let id = button.data().id;
+    if (id == null) return alert("Button id is null");
+    data.replyTo = id;
+  }
 
   $.post("/api/posts", data, (postData) => {
     let html = createPostHtml(postData);
@@ -35,6 +43,7 @@ $("#submitPostButton").click(() => {
 $("#replyModal").on("show.bs.modal", (event) => {
   let button = $(event.relatedTarget);
   let postId = getPostIdFromElement(button);
+  $("#submitReplyButton").data("id", postId);
 
   $.get(`/api/posts/${postId}`, (results) => {
     outputPosts(results, $("#originalPostContainer"));
