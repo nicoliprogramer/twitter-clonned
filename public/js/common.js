@@ -41,6 +41,10 @@ $("#replyModal").on("show.bs.modal", (event) => {
   });
 });
 
+$("#replyModal").on("hidden.bs.modal", () => {
+  $("#originalPostContainer").html("");
+});
+
 $(document).on("click", ".likeButton", (event) => {
   let button = $(event.target);
   let postId = getPostIdFromElement(button);
