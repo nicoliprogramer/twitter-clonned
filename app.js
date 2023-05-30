@@ -27,6 +27,7 @@ app.use(
 import loginRoute from "./routes/loginRoutes.js";
 import registerRoute from "./routes/registerRoutes.js";
 import logoutRoute from "./routes/logout.js";
+import postRoute from "./routes/postRoutes.js";
 
 // Api routes
 import postsApiRoute from "./routes/api/posts.js";
@@ -34,6 +35,7 @@ import postsApiRoute from "./routes/api/posts.js";
 app.use("/login", loginRoute);
 app.use("/register", registerRoute);
 app.use("/logout", logoutRoute);
+app.use("/posts", postRoute);
 
 app.use("/api/posts", postsApiRoute);
 
