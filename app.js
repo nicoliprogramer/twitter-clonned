@@ -35,7 +35,7 @@ import postsApiRoute from "./routes/api/posts.js";
 app.use("/login", loginRoute);
 app.use("/register", registerRoute);
 app.use("/logout", logoutRoute);
-app.use("/posts", postRoute);
+app.use("/posts", requireLogin, postRoute);
 
 app.use("/api/posts", postsApiRoute);
 
