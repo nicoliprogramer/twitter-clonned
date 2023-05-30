@@ -153,7 +153,7 @@ createPostHtml = (postData) => {
   }
 
   let replyFlag = "";
-  if (postData.replyTo) {
+  if (postData.replyTo && postData.replyTo._id) {
     if (!postData.replyTo._id) {
       return alert("Reply to is not populated");
     } else if (!postData.replyTo.postedBy._id) {
