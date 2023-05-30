@@ -119,7 +119,7 @@ getPostIdFromElement = (element) => {
   return postId;
 };
 
-createPostHtml = (postData) => {
+createPostHtml = (postData, largeFont = false) => {
   if (postData == null) return alert("post object is null");
 
   let isRetweet = postData.retweetData !== undefined;
@@ -143,6 +143,7 @@ createPostHtml = (postData) => {
   )
     ? "active"
     : "";
+  let largeFontClass = largeFont ? "largeFont" : "";
 
   let retweetText = "";
   if (isRetweet) {
@@ -166,7 +167,7 @@ createPostHtml = (postData) => {
                  </div>`;
   }
 
-  return `<div class='post' data-id='${postData._id}'>
+  return `<div class='post ${largeFontClass}' data-id='${postData._id}'>
     <div class='postActionContainer'>
         ${retweetText}
     </div>
@@ -259,15 +260,15 @@ outputPostsWithReplies = (results, container) => {
   container.html();
 
   if (results.replyTo !== undefined && results.replyTo._id !== undefined) {
-    let html = createPostHtml(results.replyTo);
+    let html = createPostHtml(results.replyTo, false);
     container.append(html);
   }
 
-  let mainPostHtml = createPostHtml(results.postData);
+  let mainPostHtml = createPostHtml(results.postData, true);
   container.append(mainPostHtml);
 
   results.replies.forEach((result) => {
-    let html = createPostHtml(result);
+    let html = createPostHtml(result, false);
     container.append(html);
   });
 };
