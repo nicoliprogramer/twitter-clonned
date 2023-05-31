@@ -275,7 +275,8 @@ flex: 1;
     padding: var(--spacing);
 }
 
-.profilebutton {
+.profilebutton,
+.followButton {
     border: 1px solid var(--blue);
     color: var(--blue);
     font-weight: bold;
@@ -285,6 +286,7 @@ flex: 1;
     margin-left: var(--spacing);
 }
 
-.profilebutton:hover {
+.profilebutton:hover,
+.followButton:hover {
     background-color: var(--bluebackground);
 }
