@@ -290,3 +290,8 @@ flex: 1;
 .followButton:hover {
     background-color: var(--bluebackground);
 }
+
+.followButton.following {
+    background-color: var(--blue);
+    color: #fff;
+}
