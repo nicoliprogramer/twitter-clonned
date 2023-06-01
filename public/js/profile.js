@@ -1,5 +1,9 @@
 $(document).ready(() => {
-  loadPosts();
+  if (selectedTab === "replies") {
+    loadReplies();
+  } else {
+    loadPosts();
+  }
 });
 
 loadPosts = () => {
@@ -10,4 +14,10 @@ loadPosts = () => {
       outputPosts(results, $(".postsContainer"));
     }
   );
+};
+
+loadReplies = () => {
+  $.get("/api/posts", { postedBy: profileUserId, isReply: true }, (results) => {
+    outputPosts(results, $(".postsContainer"));
+  });
 };
