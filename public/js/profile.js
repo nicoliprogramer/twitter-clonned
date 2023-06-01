@@ -3,7 +3,11 @@ $(document).ready(() => {
 });
 
 loadPosts = () => {
-  $.get("/api/posts", { postedBy: profileUserId }, (results) => {
-    outputPosts(results, $(".postsContainer"));
-  });
+  $.get(
+    "/api/posts",
+    { postedBy: profileUserId, isReply: false },
+    (results) => {
+      outputPosts(results, $(".postsContainer"));
+    }
+  );
 };
