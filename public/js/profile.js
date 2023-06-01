@@ -3,7 +3,7 @@ $(document).ready(() => {
 });
 
 loadPosts = () => {
-  $.get("/api/posts", (results) => {
+  $.get("/api/posts", { postedBy: profileUserId }, (results) => {
     outputPosts(results, $(".postsContainer"));
   });
 };
