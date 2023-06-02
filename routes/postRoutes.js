@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import User from "../schemas/userModel.js";
+import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
 const app = express();
 const router = express.Router();

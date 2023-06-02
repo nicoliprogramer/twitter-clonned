@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
-import User from "../../schemas/userModel.js";
-import Post from "../../schemas/postModel.js";
+import User from "../../models/userModel.js";
+import Post from "../../models/postModel.js";
 const app = express();
 const router = express.Router();
 
